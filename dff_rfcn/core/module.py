@@ -572,10 +572,13 @@ class Module(BaseModule):
         assert self.binded and self.params_initialized and self.optimizer_initialized
 
         self._params_dirty = True
+        self.logger.debug("param_names = {}" + str(self._param_names))
+        # FIXME: takes 4 arguments but 3 given. (self._exec_group_param_names)
         if self._update_on_kvstore:
             _update_params_on_kvstore(self._exec_group.param_arrays,
                                       self._exec_group.grad_arrays,
-                                      self._kvstore)
+                                      self._kvstore,
+                                      self._param_names)
         else:
             _update_params(self._exec_group.param_arrays,
                            self._exec_group.grad_arrays,

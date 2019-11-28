@@ -21,6 +21,7 @@ import numpy as np
 from imdb import IMDB
 from imagenet_vid_eval import vid_eval
 from ds_utils import unique_boxes, filter_small_boxes
+# from device_setting import dff_home
 
 
 class ImageNetVID(IMDB):
@@ -31,7 +32,10 @@ class ImageNetVID(IMDB):
         det_vid = image_set.split('_')[0]
         super(ImageNetVID, self).__init__('ImageNetVID', image_set, root_path, dataset_path, result_path)  # set self.name
 
+        # FIXME: use absolute path for debugging
         self.det_vid = det_vid
+        # self.root_path = os.path.join(dff_home, root_path)
+        # self.data_path = os.path.join(dff_home, dataset_path)
         self.root_path = root_path
         self.data_path = dataset_path
 
