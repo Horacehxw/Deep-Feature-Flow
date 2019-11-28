@@ -94,6 +94,9 @@ git clone https://github.com/msracver/Deep-Feature-Flow.git
 
 3. Install MXNet:
 
+    use mxnet version 1.4.1 from pip install command.
+
+
 	3.1 Clone MXNet and checkout to [MXNet@(commit 62ecb60)](https://github.com/dmlc/mxnet/tree/62ecb60) by
 	```
 	git clone --recursive https://github.com/dmlc/mxnet.git
