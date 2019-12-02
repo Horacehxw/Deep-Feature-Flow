@@ -55,6 +55,7 @@ def get_rpn_batch(roidb, cfg):
     :param roidb: ['image', 'flipped'] + ['gt_boxes', 'boxes', 'gt_classes']
     :return: data, label
     """
+    # FIXME: locate bug when config.BATCH_IMAGES=2
     assert len(roidb) == 1, 'Single batch only'
     imgs, roidb = get_image(roidb, cfg)
     im_array = imgs[0]

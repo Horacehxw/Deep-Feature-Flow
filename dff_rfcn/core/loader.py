@@ -345,6 +345,8 @@ class AnchorLoader(mx.io.DataIter):
         self.label = [[mx.nd.array(label[key]) for key in self.label_name] for label in all_label]
 
     def parfetch(self, iroidb):
+        # FIXME: locate bug here for config.BATCH_IMAGES=2 case.
+        # only single batch is allowed here?
         # get testing data for multigpu
         data, label = get_rpn_pair_batch(iroidb, self.cfg)
         data_shape = {k: v.shape for k, v in data.items()}
