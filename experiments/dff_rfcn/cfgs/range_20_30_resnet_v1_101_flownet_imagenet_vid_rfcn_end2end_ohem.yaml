@@ -1,3 +1,7 @@
+# try to train dff for long range key frame interval
+# set config.TRAIN.MIN_OFFSET = -30
+# set config.TRAIN.MAX_OFFSET = -20
+# set config.TEST.KEY_FRAME_INTERVAL = 25
 ---
 MXNET_VERSION: "mxnet"
 output_path: "./output/dff_rfcn/imagenet_vid"
@@ -57,6 +61,8 @@ dataset:
   test_image_set: VID_val_videos
   proposal: rpn
 TRAIN:
+  MIN_OFFSET: -30
+  MAX_OFFSET: -20
   lr: 0.00025
   lr_step: '1.333'
   warmup: false
@@ -72,7 +78,7 @@ TRAIN:
   # whether use OHEM
   ENABLE_OHEM: true
   # size of images for each device, 1 for e2e
-  BATCH_IMAGES: 2
+  BATCH_IMAGES: 1
   # e2e changes behavior of anchor loader and metric
   END2END: true
   # group images with similar aspect ratio
