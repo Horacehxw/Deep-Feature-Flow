@@ -61,13 +61,13 @@ dataset:
   test_image_set: VID_val_videos
   proposal: rpn
 TRAIN:
-  MIN_OFFSET: -30
+  MIN_OFFSET: -29
   MAX_OFFSET: -20
   lr: 0.00025
   lr_step: '1.333'
   warmup: false
   begin_epoch: 0
-  end_epoch: 2
+  end_epoch: 3
   model_prefix: 'dff_rfcn_vid'
   # whether resume training
   RESUME: false
@@ -148,3 +148,4 @@ TEST:
   # RCNN nms
   NMS: 0.3
   test_epoch: 2
+  KEY_FRAME_INTERVAL: 25

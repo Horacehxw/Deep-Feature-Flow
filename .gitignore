@@ -93,4 +93,3 @@ model
 .db
 
 device_setting.py
-logs/
