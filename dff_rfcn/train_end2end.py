@@ -142,7 +142,7 @@ def train_net(args, ctx, pretrained, pretrained_flow, epoch, prefix, begin_epoch
     means = np.tile(np.array(config.TRAIN.BBOX_MEANS), 2 if config.CLASS_AGNOSTIC else config.dataset.NUM_CLASSES)
     stds = np.tile(np.array(config.TRAIN.BBOX_STDS), 2 if config.CLASS_AGNOSTIC else config.dataset.NUM_CLASSES)
     epoch_end_callback = [mx.callback.module_checkpoint(mod, prefix, period=1, save_optimizer_states=True), callback.do_checkpoint(prefix, means, stds)]
-    # decide learning rate
+    # decide learning rate++
     base_lr = lr
     lr_factor = config.TRAIN.lr_factor
     lr_epoch = [float(epoch) for epoch in lr_step.split(',')]
@@ -163,6 +163,8 @@ def train_net(args, ctx, pretrained, pretrained_flow, epoch, prefix, begin_epoch
         train_data = PrefetchingIter(train_data)
 
     # train
+    # if resume from checkpoint at N, then the fit function
+    # will train for range(N, end_epoch)
     mod.fit(train_data, eval_metric=eval_metrics, epoch_end_callback=epoch_end_callback,
             batch_end_callback=batch_end_callback, kvstore=config.default.kvstore,
             optimizer='sgd', optimizer_params=optimizer_params,

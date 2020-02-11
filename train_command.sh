@@ -1,0 +1,1 @@
+python experiments/dff_rfcn/dff_rfcn_end2end_train_test.py --cfg experiments/dff_rfcn/cfgs/epochN_resnet_v1_101_flownet_Imagenet_vid_rfcn_end2end_ohem.yaml 2>&1 | tee logs/dff_rfcn_epoch7_01_14_16_25.log

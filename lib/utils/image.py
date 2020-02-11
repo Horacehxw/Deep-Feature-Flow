@@ -63,7 +63,7 @@ def get_pair_image(roidb, config):
     processed_roidb = []
     for i in range(num_images):
         roi_rec = roidb[i]
-
+        # TODO: change the behavior of iamge loader.
         eq_flag = 0 # 0 for unequal, 1 for equal
         # import pdb; pdb.set_trace()
         assert os.path.exists(roi_rec['image']), '%s does not exist'.format(roi_rec['image'])

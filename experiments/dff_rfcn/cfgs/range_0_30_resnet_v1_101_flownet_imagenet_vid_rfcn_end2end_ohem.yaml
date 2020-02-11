@@ -1,6 +1,6 @@
 # try to train dff for long range key frame interval
-# set config.TRAIN.MIN_OFFSET = -30
-# set config.TRAIN.MAX_OFFSET = -20
+# set config.TRAIN.MIN_OFFSET = -29
+# set config.TRAIN.MAX_OFFSET = 0
 # set config.TEST.KEY_FRAME_INTERVAL = 25
 ---
 MXNET_VERSION: "mxnet"
@@ -62,15 +62,15 @@ dataset:
   proposal: rpn
 TRAIN:
   MIN_OFFSET: -29
-  MAX_OFFSET: -20
+  MAX_OFFSET: 0
   lr: 0.00025
-  lr_step: '1.333'
+  lr_step: '1.333,10'
   warmup: false
-  begin_epoch: 0
-  end_epoch: 6
+  begin_epoch: 5
+  end_epoch: 9
   model_prefix: 'dff_rfcn_vid'
   # whether resume training
-  RESUME: false
+  RESUME: true
   # whether flip image
   FLIP: true
   # whether shuffle image
@@ -147,5 +147,5 @@ TEST:
   RPN_MIN_SIZE: 0
   # RCNN nms
   NMS: 0.3
-  test_epoch: 2
+  test_epoch: 4
   KEY_FRAME_INTERVAL: 30 # use 10 to compare with others first. Changing this has small overhead.

@@ -68,6 +68,7 @@ class ImageNetVID(IMDB):
         find out which indexes correspond to given image set (train or val)
         :return:
         """
+        # TODO: find what's the meaning of imageSets files
         image_set_index_file = os.path.join(self.data_path, 'ImageSets', self.image_set + '.txt')
         assert os.path.exists(image_set_index_file), 'Path does not exist: {}'.format(image_set_index_file)
         with open(image_set_index_file) as f:
@@ -102,6 +103,7 @@ class ImageNetVID(IMDB):
         return ground truth image regions database
         :return: imdb[image_index]['boxes', 'gt_classes', 'gt_overlaps', 'flipped']
         """
+        # TODO: adjust loading behavior
         cache_file = os.path.join(self.cache_path, self.name + '_gt_roidb.pkl')
         if os.path.exists(cache_file):
             with open(cache_file, 'rb') as fid:

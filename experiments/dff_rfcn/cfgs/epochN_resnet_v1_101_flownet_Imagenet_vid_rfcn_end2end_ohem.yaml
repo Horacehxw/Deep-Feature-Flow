@@ -1,8 +1,9 @@
-# train on top of the epoch4 result
-# change RESUME to true
-# change start epoch to 4
-# change pretrained model path to epoch4 output path
-# change test batch to 5
+# train on top of the epochN result
+# change start epoch to N
+# change test batch to N+1
+# set TRAIN.RESUME to true
+# copy epoch4 results to epochN output directory
+# set learning rate to 2.5e-5 (origin: 2.5e-4)
 ---
 MXNET_VERSION: "mxnet"
 output_path: "./output/dff_rfcn/imagenet_vid"
@@ -16,8 +17,8 @@ default:
   frequent: 100
   kvstore: device
 network:
-  pretrained: "./output/dff_rfcn/imagenet_vid/epoch4_resnet_v1_101_flownet_Imagenet_vid_rfcn_end2end_ohem/DET_train_30classes_VID_train_15frames/resnet_v1_101"
-  pretrained_flow: "./output/dff_rfcn/imagenet_vid/epoch4_resnet_v1_101_flownet_Imagenet_vid_rfcn_end2end_ohem/DET_train_30classes_VID_train_15frames/flownet"
+  pretrained: "./model/pretrained_model/resnet_v1_101"
+  pretrained_flow: "./model/pretrained_model/flownet"
   pretrained_epoch: 0
   PIXEL_MEANS:
   - 103.06
@@ -62,11 +63,11 @@ dataset:
   test_image_set: VID_val_videos
   proposal: rpn
 TRAIN:
-  lr: 0.00025
-  lr_step: '1.333'
+  lr: 0.000025
+  lr_step: '1.333,10'
   warmup: false
-  begin_epoch: 4
-  end_epoch: 5
+  begin_epoch: 6
+  end_epoch: 7
   model_prefix: 'dff_rfcn_vid'
   # whether resume training
   RESUME: true
@@ -146,4 +147,5 @@ TEST:
   RPN_MIN_SIZE: 0
   # RCNN nms
   NMS: 0.3
-  test_epoch: 5
+  test_epoch: 7
+  KEY_FRAME_INTERVAL: 10
